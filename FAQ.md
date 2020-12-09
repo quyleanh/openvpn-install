@@ -10,7 +10,7 @@ You can, of course, it's even recommended, update the `openvpn` package with you
 
 **Q:** How do I check for DNS leaks?
 
-**A:** Go to [browserleaks.com](https://browserleaks.com/dns) or [ipleak.net](https://ipleak.net/) (both perform IPv4 and IPv6 check) with your browser. Only your server's IP should show up.
+**A:** Go to [browserleaks.com](https://browserleaks.com/dns) or [ipleak.net](https://ipleak.net/) (both perform IPv4 and IPv6 check) with your browser. Your IP should not show up (test without and without the VPN). The DNS servers should be the ones you selected during the setup, not your IP address nor your ISP's DNS servers' addresses.
 
 ---
 
@@ -123,6 +123,14 @@ userlist=(user1 user2 user3)
 for i in ${userlist[@]};do
    MENU_OPTION=1 CLIENT=$i PASS=1 ./openvpn-install.sh
 done
+```
+
+From a list in a text file:
+
+```sh
+while read USER
+    do MENU_OPTION="1" CLIENT="$USER" PASS="1" ./openvpn-install.sh
+done < users.txt
 ```
 
 ---
